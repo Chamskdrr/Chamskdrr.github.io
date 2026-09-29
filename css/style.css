@@ -1,0 +1,404 @@
+/* ===== POLICE ===== */
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700&family=Alegreya+Sans:wght@400;700&display=swap");
+
+/* ===== COULEURS ===== */
+:root {
+  --accent: #4fe3d0;      /* turquoise Wakfu */
+  --halo: #d4ff6e;        /* halo vert-jaune */
+  --or: #e9d7a4;
+  --or-fonce: #b89b5e;
+  --panneau: rgba(24, 32, 46, 0.88);
+  --texte: #f3ecdc;
+  --texte-doux: #9aa6b8;
+}
+
+/* ===== BASE ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;   /* défilement doux quand on clique dans le menu */
+}
+
+body {
+  font-family: "Alegreya Sans", Arial, sans-serif;
+  color: var(--texte);
+  background:
+    radial-gradient(ellipse at 75% 10%, rgba(140, 60, 255, 0.4), transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(40, 160, 255, 0.5), transparent 40%),
+    #0b1030;
+  background-attachment: fixed;
+}
+
+h1, h2, h3, summary, .menu-logo, .bouton {
+  font-family: "Alegreya", Georgia, serif;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+section {
+  scroll-margin-top: 80px;   /* pour que le menu ne cache pas le titre */
+}
+
+/* ===== MENU ===== */
+.menu {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px 24px;
+  background: rgba(11, 16, 48, 0.9);
+  border-bottom: 2px solid var(--or-fonce);
+}
+
+.menu-logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.menu nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.menu nav a {
+  color: var(--texte);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.menu nav a:hover {
+  color: var(--or);
+  border-color: var(--or);
+}
+
+/* ===== ACCUEIL ===== */
+.accueil {
+  text-align: center;
+  padding: 30px 0 60px;
+}
+
+.accueil-image {
+  width: min(100%, 240px);
+  filter: drop-shadow(0 0 12px var(--halo)) drop-shadow(0 0 30px var(--halo));
+  animation: flotter 4s ease-in-out infinite;
+}
+
+/* Le personnage monte et descend doucement */
+@keyframes flotter {
+  50% { transform: translateY(-10px); }
+}
+
+h1 {
+  font-size: 2.4rem;
+  text-shadow: 0 0 15px var(--accent);
+}
+
+.classe {
+  font-size: 1.1rem;
+  margin: 6px 0;
+}
+
+.classe span {
+  color: #f2c94c;
+  font-weight: 700;
+}
+
+.statut {
+  margin-top: 12px;
+}
+
+.statut::before {
+  content: "● ";
+  color: #3ddc84;
+}
+
+/* Bouton doré */
+.bouton {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 60px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #3a2c10;
+  text-decoration: none;
+  background: linear-gradient(#f3e2ad, #d2b36d);
+  border: 1px solid #fff4cc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bouton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(243, 226, 173, 0.6);
+}
+
+/* ===== PANNEAUX (une section = un panneau) ===== */
+.panneau {
+  background: var(--panneau);
+  border: 2px solid var(--or-fonce);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  text-align: center;
+  color: var(--or);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--or-fonce);
+}
+
+.aide {
+  text-align: center;
+  color: var(--texte-doux);
+  margin-bottom: 20px;
+}
+
+/* ===== PERSONNAGE ===== */
+.personnage {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.portrait {
+  width: 200px;
+  border: 3px solid var(--or);
+  border-radius: 12px;
+  box-shadow: 0 0 20px var(--accent);
+  transition: transform 0.3s;
+}
+
+.portrait:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+.infos {
+  list-style: none;
+  margin-top: 14px;
+}
+
+.infos li {
+  margin-bottom: 6px;
+}
+
+.infos strong {
+  color: var(--or);
+}
+
+/* ===== COMPÉTENCES ===== */
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.competence {
+  background: #0f1a2b;
+  border: 1px solid var(--or-fonce);
+  border-radius: 8px;
+  padding: 14px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.competence:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px var(--accent);
+}
+
+.barre {
+  height: 12px;
+  margin: 10px 0 6px;
+  background: #060b18;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* La jauge : se remplit au chargement, et ses rayures défilent */
+.jauge {
+  height: 100%;
+  background-color: var(--accent);
+  background-image: linear-gradient(-45deg,
+    rgba(255, 255, 255, 0.35) 25%, transparent 25%,
+    transparent 50%, rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.35) 75%, transparent 75%);
+  background-size: 20px 20px;
+  animation: remplir 1.5s ease-out, progresser 1s linear infinite;
+}
+
+/* Largeur de chaque jauge */
+.niveau-15 { width: 15%; }
+.niveau-40 { width: 40%; }
+.niveau-50 { width: 50%; }
+.niveau-60 { width: 60%; }
+.niveau-70 { width: 70%; }
+
+@keyframes remplir {
+  from { width: 0; }
+}
+
+@keyframes progresser {
+  to { background-position: 20px 0; }
+}
+
+.etat {
+  font-size: 0.85rem;
+  text-align: right;
+  color: var(--accent);
+}
+
+/* ===== QUÊTES ===== */
+.quete {
+  background: #0f1a2b;
+  border: 1px solid var(--or-fonce);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  transition: border-color 0.3s;
+}
+
+.quete:hover,
+.quete[open] {
+  border-color: var(--accent);
+}
+
+.quete summary {
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.quete .type {
+  margin-left: 8px;
+  font-family: "Alegreya Sans", Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--or-fonce);
+}
+
+.quete p {
+  margin-top: 10px;
+  color: var(--texte-doux);
+}
+
+.quete a {
+  color: var(--accent);
+}
+
+.verrouillee {
+  border-style: dashed;
+  opacity: 0.6;
+}
+
+/* ===== CONTACT ===== */
+#contact > p {
+  text-align: center;
+}
+
+#contact strong {
+  color: var(--or);
+}
+
+.liens {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 24px;
+}
+
+.liens a {
+  padding: 8px 20px;
+  color: var(--texte);
+  text-decoration: none;
+  border: 1px solid var(--or-fonce);
+  border-radius: 4px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.liens a:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 10px;
+  color: var(--texte);
+  background: #060b18;
+  border: 1px solid var(--or-fonce);
+  border-radius: 4px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+form .bouton {
+  align-self: center;
+}
+
+#confirmation {
+  text-align: center;
+  color: var(--accent);
+}
+
+/* ===== PIED DE PAGE ===== */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--texte-doux);
+  font-size: 0.9rem;
+}
+
+/* ===== RESPONSIVE (téléphone) ===== */
+@media (max-width: 700px) {
+  .menu {
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .personnage {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .panneau {
+    padding: 20px;
+  }
+}

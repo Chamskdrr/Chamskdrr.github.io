@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio de Chamsdine Koudri, étudiant Pre-MSc à Epitech Nancy.">
+  <title>Chamsdine Koudri - Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== MENU (reste en haut de l'écran) ===== -->
+  <header class="menu">
+    <a href="#accueil" class="menu-logo">FecaDoCrit</a>
+    <nav>
+      <a href="#personnage">Personnage</a>
+      <a href="#competences">Compétences</a>
+      <a href="#quetes">Quêtes</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== ACCUEIL ===== -->
+    <section id="accueil" class="accueil">
+      <img src="assets/img/esprit.png" alt="Mon personnage Féca" class="accueil-image">
+      <h1>Chamsdine Koudri</h1>
+      <p class="classe"><span>Féca</span> · Niv. 23 · Metz</p>
+      <p>Étudiant Pre-MSc à Epitech Nancy</p>
+      <p class="statut">Recherche un stage ou une alternance · janvier 2027</p>
+      <a href="#personnage" class="bouton">Jouer</a>
+    </section>
+
+    <!-- ===== PERSONNAGE ===== -->
+    <section id="personnage" class="panneau">
+      <h2>Personnage</h2>
+      <div class="personnage">
+        <img src="assets/img/portrait.png" alt="Portrait de mon personnage Féca" class="portrait">
+        <div>
+          <p>
+            En année préparatoire au Master of Science d'Epitech Nancy, je me forme dans de nombreux
+            domaines de l'informatique. Ce qui me passionne le plus : le développement IA et la cybersécurité.
+          </p>
+          <ul class="infos">
+            <li><strong>Formation :</strong> Année préparatoire MSc, Epitech Nancy</li>
+            <li><strong>Ville :</strong> Metz</li>
+            <li><strong>Langues :</strong> Français (natif), Anglais (B1/B2)</li>
+            <li><strong>Pseudo :</strong> FecaDoCrit sur Hack The Box</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COMPÉTENCES (la classe niveau-XX règle la jauge) ===== -->
+    <section id="competences" class="panneau">
+      <h2>Compétences</h2>
+      <p class="aide">Je progresse chaque jour : chaque jauge montre où j'en suis dans mon apprentissage.</p>
+      <div class="grille">
+        <div class="competence">
+          <h3>HTML</h3>
+          <div class="barre"><div class="jauge niveau-70"></div></div>
+          <p class="etat">En apprentissage</p>
+        </div>
+        <div class="competence">
+          <h3>Python</h3>
+          <div class="barre"><div class="jauge niveau-60"></div></div>
+          <p class="etat">En apprentissage</p>
+        </div>
+        <div class="competence">
+          <h3>CSS</h3>
+          <div class="barre"><div class="jauge niveau-50"></div></div>
+          <p class="etat">En apprentissage</p>
+        </div>
+        <div class="competence">
+          <h3>Cybersécurité</h3>
+          <div class="barre"><div class="jauge niveau-40"></div></div>
+          <p class="etat">En apprentissage</p>
+        </div>
+        <div class="competence">
+          <h3>JavaScript</h3>
+          <div class="barre"><div class="jauge niveau-15"></div></div>
+          <p class="etat">En apprentissage</p>
+        </div>
+        <div class="competence">
+          <h3>IA</h3>
+          <div class="barre"><div class="jauge niveau-15"></div></div>
+          <p class="etat">En apprentissage</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== QUÊTES (clic pour ouvrir, sans JavaScript) ===== -->
+    <section id="quetes" class="panneau">
+      <h2>Journal de quêtes</h2>
+
+      <details class="quete" open>
+        <summary>Année préparatoire MSc <span class="type">Formation · En cours</span></summary>
+        <p>
+          Epitech Nancy : je me forme dans de nombreux domaines de l'informatique,
+          en particulier le développement IA et la cybersécurité.
+        </p>
+      </details>
+
+      <details class="quete">
+        <summary>Hack The Box <span class="type">Cybersécurité · En cours</span></summary>
+        <p>Entraînement à la cybersécurité sur la plateforme Hack The Box, sous le pseudo FecaDoCrit.</p>
+      </details>
+
+      <details class="quete">
+        <summary>Portfolio Wakfu <span class="type">Projet · 2026</span></summary>
+        <p>
+          Ce site, en HTML, CSS et JavaScript, inspiré du jeu Wakfu.
+          <a href="https://github.com/Chamskdrr" target="_blank" rel="noopener">Voir mon GitHub</a>
+        </p>
+      </details>
+
+      <details class="quete verrouillee">
+        <summary>Quête verrouillée <span class="type">Bientôt</span></summary>
+        <p>Mes premiers projets en IA et en cybersécurité arrivent bientôt !</p>
+      </details>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="panneau">
+      <h2>Contact</h2>
+      <p>Je recherche un <strong>stage</strong> ou une <strong>alternance</strong> à partir de <strong>janvier 2027</strong>.</p>
+
+      <div class="liens">
+        <a href="mailto:chamsdine.koudri@epitech.eu">Email</a>
+        <a href="https://www.linkedin.com/in/chamsdine-koudri/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Chamskdrr" target="_blank" rel="noopener">GitHub</a>
+      </div>
+
+      <form id="formulaire">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit" class="bouton">Envoyer</button>
+        <p id="confirmation"></p>
+      </form>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Chamsdine Koudri · Portfolio inspiré de Wakfu</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
