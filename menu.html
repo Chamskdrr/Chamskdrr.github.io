@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio de Chamsdine Koudri : choisissez une rubrique.">
+  <title>Menu - Chamsdine Koudri</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== BARRE DU HAUT : retour + titre de l'écran ===== -->
+  <header class="barre-haut">
+    <a href="index.html" class="retour" aria-label="Retour à l'écran titre">‹ <span>Titre</span></a>
+    <h1 class="titre-ecran">Choisissez votre destination</h1>
+  </header>
+
+  <!-- ===== ÉCRAN DE SÉLECTION : la liste à gauche, le personnage à droite ===== -->
+  <main class="selection">
+
+    <!-- Chaque ligne est un lien vers une page -->
+    <nav class="panneau liste-destinations" aria-label="Rubriques du portfolio">
+      <p class="liste-entete">4 destinations</p>
+
+      <a href="personnage.html" class="destination">
+        <span class="destination-icone">🛡️</span>
+        <span>
+          <span class="destination-nom">Personnage</span>
+          <span class="destination-infos">Qui je suis · Féca · Niv. 23</span>
+        </span>
+      </a>
+
+      <a href="competences.html" class="destination">
+        <span class="destination-icone">⚔️</span>
+        <span>
+          <span class="destination-nom">Compétences</span>
+          <span class="destination-infos">Mes sorts en apprentissage</span>
+        </span>
+      </a>
+
+      <a href="quetes.html" class="destination">
+        <span class="destination-icone">📜</span>
+        <span>
+          <span class="destination-nom">Quêtes</span>
+          <span class="destination-infos">Formation et projets</span>
+        </span>
+      </a>
+
+      <a href="contact.html" class="destination">
+        <span class="destination-icone">✉️</span>
+        <span>
+          <span class="destination-nom">Contact</span>
+          <span class="destination-infos">Stage ou alternance · janvier 2027</span>
+        </span>
+      </a>
+    </nav>
+
+    <div class="vitrine">
+      <img src="assets/img/esprit.png" alt="Mon personnage Féca" class="accueil-image">
+      <p class="vitrine-nom">FecaDoCrit</p>
+      <p class="classe"><span>Féca</span> · Niv. 23</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>FecaDoCrit</p>
+  </footer>
+
+</body>
+</html>

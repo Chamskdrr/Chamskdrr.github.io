@@ -3,24 +3,21 @@
 
 /* ===== COULEURS ===== */
 :root {
-  --accent: #4fe3d0;      /* turquoise Wakfu */
+  --accent: #4fe3d0;      /* turquoise */
   --halo: #d4ff6e;        /* halo vert-jaune */
   --or: #e9d7a4;
   --or-fonce: #b89b5e;
   --panneau: rgba(24, 32, 46, 0.88);
+  --carte: #0f1a2b;       /* fond des cartes */
   --texte: #f3ecdc;
   --texte-doux: #9aa6b8;
 }
 
-/* ===== BASE ===== */
+/* ===== BASE (commune à toutes les pages) ===== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;   /* défilement doux quand on clique dans le menu */
 }
 
 body {
@@ -31,66 +28,123 @@ body {
     radial-gradient(circle at 0% 100%, rgba(40, 160, 255, 0.5), transparent 40%),
     #0b1030;
   background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;   /* barre du haut, contenu, pied de page empilés */
 }
 
-h1, h2, h3, summary, .menu-logo, .bouton {
+h1, h2, summary, .bouton, .destination-nom, .vitrine-nom {
   font-family: "Alegreya", Georgia, serif;
 }
 
 main {
+  flex: 1;                  /* prend la place restante : le pied de page reste en bas */
+  width: 100%;
   max-width: 900px;
   margin: 0 auto;
   padding: 0 16px;
+  animation: apparaitre 0.5s ease-out;
 }
 
-section {
-  scroll-margin-top: 80px;   /* pour que le menu ne cache pas le titre */
+/* Chaque page apparaît en douceur quand on arrive dessus */
+@keyframes apparaitre {
+  from { opacity: 0; transform: translateY(15px); }
 }
 
-/* ===== MENU ===== */
-.menu {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 14px 24px;
-  background: rgba(11, 16, 48, 0.9);
-  border-bottom: 2px solid var(--or-fonce);
+/* ===== STYLES RÉUTILISÉS (écrits une seule fois) ===== */
+
+/* Le cadre du contenu de chaque page */
+.panneau {
+  background: var(--panneau);
+  border: 2px solid var(--or-fonce);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.menu-logo {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--accent);
-  text-decoration: none;
+/* Les cartes sombres : lignes du menu, compétences, quêtes */
+.destination,
+.competence,
+.quete {
+  padding: 14px;
+  background: var(--carte);
+  border: 1px solid var(--or-fonce);
+  border-radius: 8px;
+  transition: transform 0.3s, background 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
-.menu nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-}
-
-.menu nav a {
+/* Les liens encadrés : retour, contact, page suivante */
+.retour,
+.liens a,
+.navigation-bas a {
+  padding: 8px 18px;
   color: var(--texte);
   text-decoration: none;
-  border-bottom: 2px solid transparent;
-  transition: color 0.3s, border-color 0.3s;
+  background: var(--panneau);
+  border: 1px solid var(--or-fonce);
+  border-radius: 6px;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.menu nav a:hover {
-  color: var(--or);
-  border-color: var(--or);
+/* La lueur turquoise : au survol, ou quand on écrit dans un champ */
+.retour:hover,
+.liens a:hover,
+.navigation-bas a:hover,
+.competence:hover,
+input:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
 }
 
-/* ===== ACCUEIL ===== */
-.accueil {
+.vitrine,
+.aide,
+.contact > p {
   text-align: center;
-  padding: 30px 0 60px;
+}
+
+/* ===== BARRE DU HAUT (retour + titre de la page) ===== */
+.barre-haut {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;   /* le titre reste centré */
+  align-items: center;
+  padding: 20px 24px;
+}
+
+.retour {
+  justify-self: start;
+}
+
+.titre-ecran {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* Les lignes dorées de chaque côté du titre */
+.titre-ecran::before,
+.titre-ecran::after {
+  content: "";
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--or-fonce));
+}
+
+.titre-ecran::after {
+  transform: scaleX(-1);
+}
+
+/* ===== ÉCRAN TITRE (index.html) ===== */
+.accueil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;   /* centré verticalement dans l'écran */
+  text-align: center;
+  padding-block: 30px;       /* 30 px en haut et en bas */
 }
 
 .accueil-image {
@@ -104,7 +158,7 @@ section {
   50% { transform: translateY(-10px); }
 }
 
-h1 {
+.accueil h1 {
   font-size: 2.4rem;
   text-shadow: 0 0 15px var(--accent);
 }
@@ -149,28 +203,80 @@ h1 {
   box-shadow: 0 0 20px rgba(243, 226, 173, 0.6);
 }
 
-/* ===== PANNEAUX (une section = un panneau) ===== */
-.panneau {
-  background: var(--panneau);
-  border: 2px solid var(--or-fonce);
-  border-radius: 12px;
-  padding: 28px;
-  margin-bottom: 40px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+/* Le bouton "Jouer" est plus gros et sa lueur bat doucement pour attirer le clic */
+.bouton-jouer {
+  margin-top: 28px;
+  padding: 14px 90px;
+  font-size: 1.4rem;
+  animation: pulser 2s ease-in-out infinite;
 }
 
-h2 {
+@keyframes pulser {
+  50% { box-shadow: 0 0 28px rgba(243, 226, 173, 0.8); }
+}
+
+/* ===== ÉCRAN DE SÉLECTION (menu.html) ===== */
+.selection {
+  display: grid;
+  grid-template-columns: minmax(0, 420px) 1fr;   /* la liste à gauche, le personnage à droite */
+  align-items: center;
+  gap: 40px;
+  padding-bottom: 30px;
+}
+
+/* La liste est un panneau plus compact */
+.liste-destinations {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  margin-bottom: 0;
+}
+
+.liste-entete {
   text-align: center;
-  color: var(--or);
-  margin-bottom: 20px;
+  font-weight: 700;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--or-fonce);
 }
 
-.aide {
-  text-align: center;
-  color: var(--texte-doux);
-  margin-bottom: 20px;
+/* Une ligne de la liste = un lien vers une page */
+.destination {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--texte);
+  text-decoration: none;
+}
+
+/* Au survol (ou au clavier), la ligne devient dorée et avance */
+.destination:hover,
+.destination:focus-visible {
+  color: #2b2210;
+  background: linear-gradient(#e6d197, #c5a866);
+  transform: translateX(6px);
+}
+
+.destination-icone {
+  font-size: 1.6rem;
+}
+
+.destination-nom {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.destination-infos {
+  display: block;
+  font-size: 0.85rem;
+  opacity: 0.7;              /* plus discret, quelle que soit la couleur du texte */
+}
+
+.vitrine-nom {
+  margin-top: 6px;
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 
 /* ===== PERSONNAGE ===== */
@@ -195,34 +301,32 @@ h2 {
 .infos {
   list-style: none;
   margin-top: 14px;
+  line-height: 1.8;
 }
 
-.infos li {
-  margin-bottom: 6px;
-}
-
-.infos strong {
+.infos strong,
+.contact strong {
   color: var(--or);
 }
 
 /* ===== COMPÉTENCES ===== */
+.aide {
+  color: var(--texte-doux);
+  margin-bottom: 20px;
+}
+
 .grille {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
 }
 
-.competence {
-  background: #0f1a2b;
-  border: 1px solid var(--or-fonce);
-  border-radius: 8px;
-  padding: 14px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
 .competence:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0 15px var(--accent);
+}
+
+.competence h2 {
+  font-size: 1.15rem;
 }
 
 .barre {
@@ -233,7 +337,7 @@ h2 {
   overflow: hidden;
 }
 
-/* La jauge : se remplit au chargement, et ses rayures défilent */
+/* La jauge : se remplit à l'arrivée sur la page, et ses rayures défilent */
 .jauge {
   height: 100%;
   background-color: var(--accent);
@@ -267,13 +371,8 @@ h2 {
 }
 
 /* ===== QUÊTES ===== */
-.quete {
-  background: #0f1a2b;
-  border: 1px solid var(--or-fonce);
-  border-radius: 8px;
-  padding: 14px 18px;
-  margin-bottom: 12px;
-  transition: border-color 0.3s;
+.quete + .quete {
+  margin-top: 12px;          /* espace seulement ENTRE deux quêtes */
 }
 
 .quete:hover,
@@ -310,34 +409,12 @@ h2 {
 }
 
 /* ===== CONTACT ===== */
-#contact > p {
-  text-align: center;
-}
-
-#contact strong {
-  color: var(--or);
-}
-
 .liens {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
   margin: 18px 0 24px;
-}
-
-.liens a {
-  padding: 8px 20px;
-  color: var(--texte);
-  text-decoration: none;
-  border: 1px solid var(--or-fonce);
-  border-radius: 4px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.liens a:hover {
-  border-color: var(--accent);
-  box-shadow: 0 0 12px var(--accent);
 }
 
 form {
@@ -357,13 +434,7 @@ textarea {
   background: #060b18;
   border: 1px solid var(--or-fonce);
   border-radius: 4px;
-}
-
-input:focus,
-textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
+  outline: none;             /* remplacé par la lueur turquoise au focus */
 }
 
 form .bouton {
@@ -375,7 +446,14 @@ form .bouton {
   color: var(--accent);
 }
 
-/* ===== PIED DE PAGE ===== */
+/* ===== NAVIGATION DU BAS ET PIED DE PAGE ===== */
+.navigation-bas {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
 footer {
   text-align: center;
   padding: 20px;
@@ -385,12 +463,37 @@ footer {
 
 /* ===== RESPONSIVE (téléphone) ===== */
 @media (max-width: 700px) {
-  .menu {
-    justify-content: center;
+  .barre-haut {
+    padding: 14px 16px;
   }
 
-  h1 {
+  .titre-ecran {
+    font-size: 1.15rem;
+  }
+
+  /* Plus de place : on enlève les lignes dorées et le mot à côté de la flèche */
+  .titre-ecran::before,
+  .titre-ecran::after,
+  .retour span {
+    display: none;
+  }
+
+  .accueil h1 {
     font-size: 1.8rem;
+  }
+
+  .bouton-jouer {
+    padding: 14px 60px;
+  }
+
+  /* La liste passe au-dessus du personnage */
+  .selection {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .vitrine .accueil-image {
+    width: 170px;
   }
 
   .personnage {
@@ -400,5 +503,13 @@ footer {
 
   .panneau {
     padding: 20px;
+  }
+}
+
+/* ===== ACCESSIBILITÉ : pas d'animations si le visiteur les a désactivées ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }
