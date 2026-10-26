@@ -173,6 +173,13 @@ textarea:focus {
   font-weight: 700;
 }
 
+.accroche {
+  margin: 8px 0;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--or);
+}
+
 .statut {
   margin-top: 12px;
 }
